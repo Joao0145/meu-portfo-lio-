@@ -1,26 +1,26 @@
-document.getElementById('contact-form').addEventListener('submit', function(event) {
-    event.preventDefault(); // Evita o envio do formulário
+document.addEventListener('DOMContentLoaded', () => {
+    const form = document.getElementById('contatoForm');
 
-    // Coleta os valores dos campos do formulário
-    const name = document.getElementById('name').value.trim();
-    const email = document.getElementById('email').value.trim();
-    const message = document.getElementById('message').value.trim();
+    form.addEventListener('submit', (event) => {
+        event.preventDefault(); // Impede o envio padrão do formulário
 
-    // Função de validação de e-mail simples
-    const isValidEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+        // Validação simples dos campos
+        const nome = form.nome.value.trim();
+        const email = form.email.value.trim();
+        const mensagem = form.mensagem.value.trim();
 
-    // Valida os campos
-    if (name === '' || email === '' || message === '') {
-        alert('Por favor, preencha todos os campos.');
-        return;
-    }
+        if (!nome || !email || !mensagem) {
+            alert('Por favor, preencha todos os campos.');
+            return;
+        }
 
-    if (!isValidEmail(email)) {
-        alert('Por favor, insira um e-mail válido.');
-        return;
-    }
+        // Simulação de envio (pode ser substituído por uma chamada real à API)
+        // Aqui você pode adicionar a lógica de envio, se necessário
 
-    // Sucesso
-    alert(`Obrigado, ${name}! Sua mensagem foi enviada com sucesso.`);
-    document.getElementById('contact-form').reset(); // Limpa o formulário
+        // Feedback ao usuário
+        alert('Obrigado pelo seu contato, ' + nome + '! Sua mensagem foi enviada.');
+        
+        // Resetando o formulário
+        form.reset();
+    });
 });
